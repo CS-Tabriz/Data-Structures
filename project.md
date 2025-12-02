@@ -5,11 +5,11 @@
 > ## مقدمات ریاضی
 > ---
 >> ### * خواص سیگما :
-> * $\sum_{i=1}^n i = 1+2+3+ ... + n= \frac{n(n+1)}{2} $ ~ $ \frac{1}{2}n^2= \Theta(n^2)$
-> * $\sum_{i=1}^{n} i^2 = 1^2 +2^2 + 3^2 + ...+ n^2 = \frac{n(n+1)(2n+1)}{6} $ ~ $ \frac{1}{3}n^3=\Theta(n^3)$
-> * $\sum_{i=1}^{n} i^3 = 1^3 +2^3 + 3^3 + ...+ n^3 = \left( \frac{n(n+1)}{2} \right)^2 $ ~ $ \frac{1}{4}n^4=\Theta(n^4)$
+> * $\sum_{i=1}^n i = 1+2+3+ ... + n= \frac{n(n+1)}{2}$ ~ $\frac{1}{2}n^2= \Theta(n^2)$
+> * $\sum_{i=1}^{n} i^2 = 1^2 +2^2 + 3^2 + ...+ n^2 = \frac{n(n+1)(2n+1)}{6}$ ~ $\frac{1}{3}n^3=\Theta(n^3)$
+> * $\sum_{i=1}^{n} i^3 = 1^3 +2^3 + 3^3 + ...+ n^3 = \left( \frac{n(n+1)}{2} \right)^2$ ~ $\frac{1}{4}n^4=\Theta(n^4)$
 >
->     * $\sum_{i=1}^{n} i^{p>0} = 1^p +2^p + 3^p + ...+ n^p$ ~ $ \frac{1}{p+1}n^{p+1}=\Theta(n^{p+1})$
+>     * $\sum_{i=1}^{n} i^{p>0} = 1^p +2^p + 3^p + ...+ n^p$ ~ $\frac{1}{p+1}n^{p+1}=\Theta(n^{p+1})$
 > 
 > #### مثال :
 > ### $\lim_{n\to \infty} \frac{1 + 2^5 + 3^5+ ... + n^5}{\frac{2}{3}n^6} = \frac{\frac{1}{6}n^6}{\frac{2}{3}n^6} = \frac{1}{4}$
@@ -37,7 +37,9 @@
 
 به طور کلی حد $\lim_{n \to \infty} \frac{f(n)}{g(n)}$ وقتی $n \to \infty$ سه حالت دارد:
 
-$$\lim_{n \to \infty} \frac{f(n)}{g(n)} = \begin{cases} ۰ \quad \leftrightarrow \quad \text{رشد } f(n) < \text{رشد } g(n) \\ \infty \quad \leftrightarrow \quad \text{رشد } f(n) > \text{رشد } g(n) \\ ۰ < k < \infty \quad \leftrightarrow \quad \text{رشد } f(n) = \text{رشد } g(n) \end{cases}$$
+* جواب صفر باشد، رشد g بیشتره
+* جواب $\infty$ باشد، رشد f بیشتره
+* جواب عدد ثابتی باشد، هر دو هم‌رشد هستن
 
 اگر هم با مبهم $\frac{0}{0}$و $\frac{\infty}{\infty}$مواجه شدیم، می‌توان از هوپیتال و حذف عامل مبهم کننده استفاده کرد.
 
@@ -192,14 +194,14 @@ $$\sim \log \log n \times \log \log \log n < (\log \log n)^2$$
 ### حلقه‌های مستقل 
 اگر حلقه‌ها وابستگی نداشته باشند، تعداد تکرارها در هم ضرب می‌شود.
 
-**حلقه ساده:** $ \theta(n) \to n$.
+**حلقه ساده:** $n \to \theta(n)$
 ```c
 for (int i = 1; i <= n; i++) {
 
     printf("silaAAm"); 
 }
 ```
-**دو حلقه تودرتو:** $ \theta(n^2) \to n \times n $.
+**دو حلقه تودرتو:** $n \times n \to \theta(n^2)$
 ```c
 for (int i = 1; i <= n; i++) {
 
@@ -208,7 +210,7 @@ for (int i = 1; i <= n; i++) {
     }
 }
 ```
-**سه حلقه تودرتو:** $ \theta(n^3)\to n \times n \times n $.
+**سه حلقه تودرتو:** $n \times n \times n \to \theta(n^3)$
 ```c
 for (int i = 1; i <= n; i++) {
 
@@ -469,4 +471,5 @@ for(i = 1; i <= n; i = i * 2)
             printf("No Smoking");
 ```
 > $$\log n(2n-1) = 2n\log n -\log n = \theta(n \log n)
+
 
