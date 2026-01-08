@@ -444,7 +444,7 @@ for(i = 1; i <= n; i++){
     }
 }
 ```
-> [$\theta(n)$](#الگوی-هندسی-نزولی)
+> $\theta(n)$
 --- 
 #### 4.مرتبه زمانی شبه‌کد زیر را محاسبه کنید:
 ```c
@@ -470,6 +470,7 @@ for(i = 1; i <= n; i = i * 2)
         for(k = 1; k <= j; k++)
             printf("No Smoking");
 ```
-> $$\log n(2n-1) = 2n\log n -\log n = \theta(n \log n)
+> $\log n(2n-1) = 2n\log n -\log n = \theta(n \log n)$
+
 
 
