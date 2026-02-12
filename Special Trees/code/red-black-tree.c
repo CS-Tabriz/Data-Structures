@@ -17,7 +17,13 @@ typedef struct Tree {
     Node* nil;
 } Tree;
 
-/* --- Essentials --- */
+Node* create_node(Tree* tree, int key) {
+    Node* node = malloc(sizeof(Node));
+    node->key = key;
+    node->color = RED;
+    node->left = node->right = node->parent = tree->nil;
+    return node;
+}
 
 Tree* create_tree() {
     Tree *tree = malloc(sizeof(Tree));
@@ -28,29 +34,6 @@ Tree* create_tree() {
     return tree;
 }
 
-Node* create_node(Tree* tree, int key) {
-    Node* node = malloc(sizeof(Node));
-    node->key = key;
-    node->color = RED;
-    node->left = node->right = node->parent = tree->nil;
-    return node;
-}
-
-/* --- Rotations --- */
-
-void rotate_left(Tree *tree, Node *x) {
-    Node *y = x->right;
-    x->right = y->left;
-    if (y->left != tree->nil) y->left->parent = x;
-
-    y->parent = x->parent;
-    if (x->parent == tree->nil) tree->root = y;
-    else if (x == x->parent->left) x->parent->left = y;
-    else x->parent->right = y;
-
-    y->left = x;
-    x->parent = y;
-}
 
 void rotate_right(Tree *tree, Node *y) {
     Node *x = y->left;
@@ -66,7 +49,20 @@ void rotate_right(Tree *tree, Node *y) {
     y->parent = x;
 }
 
-/* --- Utilities --- */
+void rotate_left(Tree *tree, Node *x) {
+    Node *y = x->right;
+    x->right = y->left;
+    if (y->left != tree->nil) y->left->parent = x;
+
+    y->parent = x->parent;
+    if (x->parent == tree->nil) tree->root = y;
+    else if (x == x->parent->left) x->parent->left = y;
+    else x->parent->right = y;
+
+    y->left = x;
+    x->parent = y;
+}
+
 
 void insert_fixup(Tree *tree, Node *z) {
     while (z->parent->color == RED) {
@@ -125,7 +121,13 @@ void insert(Tree *tree, int key) {
     insert_fixup(tree, z);
 }
 
-/* --- Display --- */
+void preorder(Tree *tree, Node *node) {
+    if (node == tree->nil) return;
+    if (node->color == RED) printf(red_color "%d " reset_color, node->key);
+    else printf("%d ", node->key);
+    preorder(tree, node->left);
+    preorder(tree, node->right);
+}
 
 void inorder(Tree *tree, Node *node) {
     if (node == tree->nil) return;
@@ -135,13 +137,6 @@ void inorder(Tree *tree, Node *node) {
     inorder(tree, node->right);
 }
 
-void preorder(Tree *tree, Node *node) {
-    if (node == tree->nil) return;
-    if (node->color == RED) printf(red_color "%d " reset_color, node->key);
-    else printf("%d ", node->key);
-    preorder(tree, node->left);
-    preorder(tree, node->right);
-}
 
 int main() {
     Tree *tree = create_tree();
